@@ -37,7 +37,7 @@ This project simulates a real-world **feature enablement scenario** focused on i
 | ----------------------------- | ----------- |
 | Adoption Rate                 | 58.06%      |
 | Avg. Feedback Resolution Time | 7.88 hours  |
-| Resolution Ratio              | 46.68%      |
+| Avg. Resolution Ratio         | 46.68%      |
 | Avg. Final Approval Time      | 16.61 hours |
 
 ---
