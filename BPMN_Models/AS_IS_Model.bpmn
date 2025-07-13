@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1v089ww" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.6.1">
+  <bpmn:process id="Process_1rgexwy" isExecutable="false">
+    <bpmn:startEvent id="Event_1mb40cd" name="Start Process Review">
+      <bpmn:outgoing>Flow_125unn9</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_0o6kmcp" name="Share Model via Email">
+      <bpmn:incoming>Flow_125unn9</bpmn:incoming>
+      <bpmn:outgoing>Flow_09xgwfs</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_125unn9" name="Trigger when model is shared" sourceRef="Event_1mb40cd" targetRef="Activity_0o6kmcp" />
+    <bpmn:task id="Activity_0g3hdkp" name="Reviewer Sends Feedback via Email">
+      <bpmn:incoming>Flow_09xgwfs</bpmn:incoming>
+      <bpmn:outgoing>Flow_17w4kn1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_09xgwfs" name="Manual action" sourceRef="Activity_0o6kmcp" targetRef="Activity_0g3hdkp" />
+    <bpmn:task id="Activity_0e36vrz" name="Modeler Integrates Feedback">
+      <bpmn:incoming>Flow_17w4kn1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0md6eui</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_17w4kn1" name="Fragmented feedback" sourceRef="Activity_0g3hdkp" targetRef="Activity_0e36vrz" />
+    <bpmn:exclusiveGateway id="Gateway_19qms7m" name="All Feedback Received?">
+      <bpmn:incoming>Flow_0md6eui</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rdk7dm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_07t8775</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0md6eui" name="May involve back-and-forth" sourceRef="Activity_0e36vrz" targetRef="Gateway_19qms7m" />
+    <bpmn:task id="Activity_0m5rs7d" name="Follow up with Reviewer">
+      <bpmn:incoming>Flow_0rdk7dm</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0rdk7dm" name="Task if No" sourceRef="Gateway_19qms7m" targetRef="Activity_0m5rs7d" />
+    <bpmn:sequenceFlow id="Flow_07t8775" name="End Event" sourceRef="Gateway_19qms7m" targetRef="Event_09k21sc" />
+    <bpmn:endEvent id="Event_09k21sc" name="Model Approved">
+      <bpmn:incoming>Flow_07t8775</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1rgexwy">
+      <bpmndi:BPMNShape id="Event_1mb40cd_di" bpmnElement="Event_1mb40cd">
+        <dc:Bounds x="172" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="175" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o6kmcp_di" bpmnElement="Activity_0o6kmcp">
+        <dc:Bounds x="350" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g3hdkp_di" bpmnElement="Activity_0g3hdkp">
+        <dc:Bounds x="600" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e36vrz_di" bpmnElement="Activity_0e36vrz">
+        <dc:Bounds x="850" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_19qms7m_di" bpmnElement="Gateway_19qms7m" isMarkerVisible="true">
+        <dc:Bounds x="875" y="295" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="801" y="306" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m5rs7d_di" bpmnElement="Activity_0m5rs7d">
+        <dc:Bounds x="1070" y="280" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09k21sc_di" bpmnElement="Event_09k21sc">
+        <dc:Bounds x="1122" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1100" y="455" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_125unn9_di" bpmnElement="Flow_125unn9">
+        <di:waypoint x="208" y="150" />
+        <di:waypoint x="350" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="240" y="106" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09xgwfs_di" bpmnElement="Flow_09xgwfs">
+        <di:waypoint x="450" y="150" />
+        <di:waypoint x="600" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="491" y="113" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17w4kn1_di" bpmnElement="Flow_17w4kn1">
+        <di:waypoint x="700" y="150" />
+        <di:waypoint x="850" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="745" y="116" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0md6eui_di" bpmnElement="Flow_0md6eui">
+        <di:waypoint x="900" y="190" />
+        <di:waypoint x="900" y="295" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="805" y="236" width="89" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rdk7dm_di" bpmnElement="Flow_0rdk7dm">
+        <di:waypoint x="925" y="320" />
+        <di:waypoint x="1070" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="973" y="293" width="49" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07t8775_di" bpmnElement="Flow_07t8775">
+        <di:waypoint x="900" y="345" />
+        <di:waypoint x="900" y="430" />
+        <di:waypoint x="1122" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="931" y="455" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
