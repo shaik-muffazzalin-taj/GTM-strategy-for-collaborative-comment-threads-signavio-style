@@ -81,5 +81,3 @@ MSc International Business Management
 July 2025
 
 ---
-
-## ✅ Status: Completed – Ready for Showcase & Portfolio
